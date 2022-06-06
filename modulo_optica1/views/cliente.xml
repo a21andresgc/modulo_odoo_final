@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="cliente_form" model="ir.ui.view">
+        <field name="name">optica.cliente.form</field>
+        <field name="model">optica.cliente</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                                <field name="nombre"/>
+                                <field name="edad"/>
+                        </group>
+                        <group>
+                                <field name="patologia"/>
+                                <field name="dioptrías"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+        </record>
+
+        <record id="cliente_tree" model="ir.ui.view">
+            <field name="name">optica.cliente.tree</field>
+            <field name="model">optica.cliente</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="nombre"/>
+                    <field name="edad"/>
+                    <field name="patologia"/>
+                    <field name="dioptrías"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="cliente_kanban" model="ir.ui.view">
+            <field name="name">optica.cliente.kanban</field>
+            <field name="model">optica.cliente</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="nombre"></field>
+                    <field name="edad"></field>
+                    <field name="patologia"></field>
+                    <field name="dioptrías"></field>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            <field name="nombre"/>
+                                        </li>
+                                        <li>
+                                            <field name="edad"/>
+                                        </li>
+                                        <li>
+                                            <field name="patologia"/>
+                                        </li>
+                                        <li>
+                                            <field name="dioptrías"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    <record id="accion_optica" model="ir.actions.act_window">
+        <field name ="name">Cliente</field>
+        <field name ="type">ir.actions.act_window</field>
+        <field name="res_model">optica.cliente</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Aqui podras ingresar los datos de un nuevo paciente
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="optica_root"
+              name="Optica"
+              sequence="10"/>
+
+
+    <menuitem id="optica_cliente_root"
+              name="Clientes"
+              parent="optica_root"
+              sequence="10"/>
+
+
+    <menuitem id="optica_cliente_"
+              name="Clientes"
+              parent="optica_cliente_root"
+              action="accion_optica"
+              sequence="10"/>
+              
+
+</odoo>
